@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="524.0" prefWidth="709.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Lab_proController">
+   <center>
+      <AnchorPane prefHeight="443.0" prefWidth="709.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox fx:id="subjectVBOX" layoutX="14.0" layoutY="11.0" prefHeight="459.0" prefWidth="701.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="11.0">
+               <children>
+                  <HBox prefHeight="399.0" prefWidth="729.0">
+                     <children>
+                        <TableView fx:id="subjectTable" prefHeight="399.0" prefWidth="672.0" HBox.hgrow="ALWAYS">
+                          <columns>
+                            <TableColumn fx:id="colSubjectNumber" prefWidth="75.0" text="SUBJECT NUMBER" />
+                            <TableColumn fx:id="colSubjectDOB" prefWidth="75.0" text="DATE OF BIRTH" />
+                              <TableColumn fx:id="colSubjectGroup" prefWidth="75.0" text="GROUP" />
+                              <TableColumn fx:id="colSubjectGender" prefWidth="75.0" text="GENDER" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                        <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Button fx:id="subjectView" mnemonicParsing="false" onAction="#viewSubject" prefHeight="45.0" prefWidth="62.0" text="VIEW" />
+                              <Button fx:id="subjectView1" mnemonicParsing="false" onAction="#viewSubject" prefHeight="45.0" prefWidth="62.0" text="TRACK" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="47.0" prefWidth="705.0">
+                     <children>
+                        <Button fx:id="subjectEnroll" mnemonicParsing="false" onAction="#enrollSubject" prefHeight="34.0" prefWidth="78.0" text="ENROLL" />
+                        <Button fx:id="subjectUpdate" mnemonicParsing="false" onAction="#updateSubject" prefHeight="34.0" prefWidth="92.0" text="UPDATE" />
+                        <Button fx:id="subjectArchive" mnemonicParsing="false" onAction="#archiveSubject" prefHeight="34.0" prefWidth="92.0" text="ARCHIVE" />
+                        <Button fx:id="subjectClose" mnemonicParsing="false" onAction="#closeSubject" prefHeight="34.0" prefWidth="92.0" text="CLOSE" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox fx:id="logVBOX" layoutX="12.0" layoutY="14.0" prefHeight="446.0" prefWidth="697.0" visible="false">
+               <children>
+                  <TabPane>
+                     <tabs>
+                        <Tab text="Unschedule Logs">
+                           <content>
+                              <HBox prefHeight="479.0" prefWidth="709.0">
+                                 <children>
+                                    <TableView fx:id="viewLogsTable" prefHeight="413.0" prefWidth="597.0" HBox.hgrow="ALWAYS">
+                                       <columns>
+                                          <TableColumn fx:id="viewLogs" prefWidth="75.0" text="LOGS" />
+                                          <TableColumn fx:id="viewDate" prefWidth="75.0" text="DATE" />
+                                          <TableColumn fx:id="viewRequisition" prefWidth="75.0" text="FTA REQ. NUMBER" />
+                                          <TableColumn fx:id="viewTrackingNumber" prefWidth="75.0" text="TRACKING NUMBER" />
+                                          <TableColumn fx:id="viewTime" prefWidth="75.0" text="TIME" />
+                                          <TableColumn fx:id="viewParasite" prefWidth="75.0" text="PARASITOLOGY" />
+                                       </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                    <VBox fx:id="viewUpdateLog" prefHeight="419.0" prefWidth="69.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Button fx:id="viewAddLog" mnemonicParsing="false" onAction="#addLog" prefHeight="47.0" prefWidth="72.0" text="ADD" />
+                                          <Button mnemonicParsing="false" onAction="#updateLog" prefHeight="50.0" prefWidth="72.0" text="UPDATE" />
+                                          <Button fx:id="viewDeleteLog" mnemonicParsing="false" onAction="#deleteLog" prefHeight="54.0" prefWidth="72.0" text="DELETE" />
+                                          <Button fx:id="viewClose" mnemonicParsing="false" onAction="#close" prefHeight="54.0" prefWidth="72.0" text="CLOSE" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </content>
+                        </Tab>
+                        <Tab text="Schedule Logs">
+                           <content>
+                              <HBox prefHeight="479.0" prefWidth="709.0">
+                                 <children>
+                                    <TableView fx:id="scheduleTableView" prefHeight="413.0" prefWidth="597.0" HBox.hgrow="ALWAYS">
+                                       <columns>
+                                          <TableColumn fx:id="scheduleVisitCol" prefWidth="75.0" text="VISIT" />
+                                          <TableColumn fx:id="scheduleDateCol" prefWidth="75.0" text="DATE" />
+                                          <TableColumn fx:id="scheduleTimeCol" prefWidth="75.0" text="COL TIME" />
+                                          <TableColumn fx:id="scheduleParasitemiaCol" prefWidth="75.0" text="PARASITEMIA" />
+                                          <TableColumn fx:id="scheduleGenotypingCol" prefWidth="75.0" text="GENOTYPING" />
+                                          <TableColumn fx:id="scheduleImmunogenCol" prefWidth="75.0" text="IMMUNOGENECITY" />
+                                       </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                    <VBox fx:id="viewUpdateLog1" prefHeight="419.0" prefWidth="69.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Button fx:id="addNewSchedule" mnemonicParsing="false" onAction="#addSchedule" prefHeight="47.0" prefWidth="72.0" text="ADD" />
+                                          <Button mnemonicParsing="false" onAction="#updateSchedule" prefHeight="50.0" prefWidth="72.0" text="UPDATE" />
+                                          <Button fx:id="viewDeleteLog1" mnemonicParsing="false" onAction="#deleteSchedule" prefHeight="54.0" prefWidth="72.0" text="DELETE" />
+                                          <Button mnemonicParsing="false" onAction="#close" prefHeight="54.0" prefWidth="72.0" text="CLOSE" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="viewSubjectNumber" alignment="CENTER" prefHeight="38.0" prefWidth="712.0" text="SUBJECT NUMBER:" textFill="RED">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox fx:id="addLogVBOX" layoutX="10.0" layoutY="11.0" prefHeight="459.0" prefWidth="709.0" visible="false">
+               <children>
+                  <TabPane>
+                     <tabs>
+                        <Tab text="Log Unschedule">
+                           <content>
+                              <HBox prefHeight="424.0" prefWidth="709.0">
+                                 <children>
+                                    <GridPane prefHeight="385.0" prefWidth="700.0">
+                                      <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="104.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="76.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.0" minWidth="10.0" prefWidth="116.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="113.0" minWidth="10.0" prefWidth="85.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="89.0" minWidth="10.0" prefWidth="31.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="88.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" prefWidth="103.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.0" minWidth="10.0" prefWidth="97.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                          <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <TextField fx:id="loggingNumber" editable="false" prefHeight="35.0" prefWidth="206.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                                          <TextField fx:id="loggingRequsitionNumber" prefHeight="35.0" prefWidth="206.0" promptText="Requisition number" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                                          <CheckBox fx:id="loggingParasiteStatus" mnemonicParsing="false" text="Parasite (Tick if positive)" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="4">
+                                             <font>
+                                                <Font name="System Bold Italic" size="13.0" />
+                                             </font>
+                                          </CheckBox>
+                                          <TextField fx:id="loggingTrackingNumber" prefHeight="35.0" prefWidth="206.0" promptText="Tracking number" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+                                          <TextField fx:id="loggingTimeHour" prefHeight="33.0" prefWidth="366.0" promptText="HH" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                          <TextField fx:id="loggingTimeMinute" prefHeight="33.0" prefWidth="366366.0" promptText="MM" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                                          <Label prefHeight="31.0" prefWidth="273.0" text="LOG NUMBER:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="31.0" prefWidth="273.0" text="REQUISITION NUMBER:" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="31.0" prefWidth="273.0" text="DATE:" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="35.0" prefWidth="698.0" text="UNSCHEDULED LOGGING" textFill="RED" GridPane.columnSpan="7">
+                                             <font>
+                                                <Font name="System Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="loggingSave" mnemonicParsing="false" onAction="#saveLogging" prefHeight="44.0" prefWidth="96.0" text="SAVE" GridPane.columnIndex="6" GridPane.rowIndex="9" />
+                                          <Button fx:id="loggingClose" mnemonicParsing="false" onAction="#closeAddLog" prefHeight="44.0" prefWidth="96.0" text="CLOSE" GridPane.columnIndex="7" GridPane.rowIndex="9" />
+                                          <Label prefHeight="31.0" prefWidth="273.0" text="TRACKING NUMBER:" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="31.0" prefWidth="273.0" text="PARASITE:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="31.0" prefWidth="273.0" text="TIME:" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="loggingDateDay" prefHeight="33.0" prefWidth="366.0" promptText="dd" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                          <ComboBox fx:id="loggingDateMonth" prefHeight="33.0" prefWidth="366.0" promptText="MM" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                          <ComboBox fx:id="loggingDateYear" prefHeight="33.0" prefWidth="366.0" promptText="yyyy" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                                          <Label prefHeight="31.0" prefWidth="273.0" text="PARASITOLOGY NO.:" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="5">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="parasitologyNumber" prefHeight="35.0" prefWidth="206.0" promptText="Parasitology number" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </HBox>
+                           </content>
+                        </Tab>
+                        <Tab text="Log Scheduled">
+                           <content>
+                              <HBox prefHeight="424.0" prefWidth="709.0">
+                                 <children>
+                                    <GridPane prefHeight="385.0" prefWidth="700.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="68.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="112.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.0" minWidth="10.0" prefWidth="107.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="113.0" minWidth="10.0" prefWidth="94.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="89.0" minWidth="10.0" prefWidth="31.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="88.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" prefWidth="125.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.0" minWidth="10.0" prefWidth="75.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <TextField fx:id="schduleVisitNumber" editable="false" prefHeight="35.0" prefWidth="206.0" promptText="eg. 1, 2, 3, 10, 20, 30" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                                          <TextField fx:id="scheduleParasitemia" prefHeight="35.0" prefWidth="206.0" promptText="eg. 00000 (5 digits only)" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                                          <TextField fx:id="scheduleGenotyping" prefHeight="35.0" prefWidth="206.0" promptText="eg. 000000 (6 digits only)" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+                                          <TextField fx:id="scheduleHour" prefHeight="33.0" prefWidth="366.0" promptText="HH" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                          <TextField fx:id="scheduleMinute" prefHeight="33.0" prefWidth="366366.0" promptText="MM" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                          <Label prefHeight="31.0" prefWidth="273.0" text="Visit Number:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="31.0" prefWidth="273.0" text="PARASITEMIA:" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="31.0" prefWidth="273.0" text="DATE:" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="35.0" prefWidth="698.0" text="SCHEDULED VISITS LOGGING" textFill="RED" GridPane.columnSpan="7">
+                                             <font>
+                                                <Font name="System Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Button mnemonicParsing="false" onAction="#scheduleVisitSave" prefHeight="44.0" prefWidth="96.0" text="SAVE" GridPane.columnIndex="6" GridPane.rowIndex="9" />
+                                          <Button fx:id="loggingClose1" mnemonicParsing="false" onAction="#closeAddLog" prefHeight="44.0" prefWidth="96.0" text="CLOSE" GridPane.columnIndex="7" GridPane.rowIndex="9" />
+                                          <Label prefHeight="31.0" prefWidth="273.0" text="GENOTYPING:" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="31.0" prefWidth="273.0" text="TIME:" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="scheduleDay" prefHeight="33.0" prefWidth="366.0" promptText="dd" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                          <ComboBox fx:id="scheduleMonth" prefHeight="33.0" prefWidth="366.0" promptText="MM" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                          <ComboBox fx:id="scheduleYear" prefHeight="33.0" prefWidth="366.0" promptText="yyyy" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                          <Label prefHeight="31.0" prefWidth="273.0" text="IMMUNOGENECITY:" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="5">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="scheduleImmunogenecity" prefHeight="35.0" prefWidth="206.0" promptText="eg. 000000 (6 digits only)" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+                                          <Label alignment="CENTER" prefHeight="31.0" prefWidth="273.0" text="HEAMO:" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="31.0" prefWidth="273.0" text="PLATELETS:" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="31.0" prefWidth="273.0" text="WBC:" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="31.0" prefWidth="273.0" text="CREATINE:" GridPane.columnIndex="5" GridPane.rowIndex="7">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="31.0" prefWidth="273.0" text="ALT:" GridPane.columnIndex="6" GridPane.rowIndex="7">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="scheduleHeamoglobin" editable="false" prefHeight="35.0" prefWidth="206.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                          <TextField fx:id="schedulePlatelets" editable="false" prefHeight="35.0" prefWidth="206.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                                          <TextField fx:id="scheduleWBC" editable="false" prefHeight="35.0" prefWidth="206.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                                          <TextField fx:id="scheduleCreatinine" editable="false" prefHeight="35.0" prefWidth="206.0" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+                                          <TextField fx:id="scheduleALT" editable="false" prefHeight="35.0" prefWidth="206.0" GridPane.columnIndex="6" GridPane.rowIndex="8" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </HBox>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="viewSubjectNumber1" alignment="CENTER" prefHeight="51.0" prefWidth="709.0" text="SUBJECT NUMBER:" textFill="RED">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox fx:id="enrollSujectVBOX" layoutX="20.0" layoutY="21.0" prefHeight="437.0" prefWidth="709.0" visible="false">
+               <children>
+                  <HBox prefHeight="424.0" prefWidth="709.0">
+                     <children>
+                        <GridPane prefHeight="385.0" prefWidth="700.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="68.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <TextField fx:id="enrollSubjectNumber" prefHeight="35.0" prefWidth="206.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+                              <DatePicker fx:id="enrollSubjectDOB" prefHeight="33.0" prefWidth="301.0" GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.rowIndex="4" />
+                              <Label prefHeight="31.0" prefWidth="273.0" text="SUBJECT NUMBER:" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="31.0" prefWidth="79.0" text="GROUP:" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="31.0" prefWidth="155.0" text="DATE OF BIRTH:" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="35.0" prefWidth="698.0" text="ENROLL SUBJECT" textFill="RED" GridPane.columnIndex="1" GridPane.columnSpan="7">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="enrollSave" mnemonicParsing="false" onAction="#saveEnrollSubject" prefHeight="44.0" prefWidth="96.0" text="SAVE" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                              <ComboBox fx:id="enrollComboGroup" prefHeight="31.0" prefWidth="127.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+                              <ComboBox fx:id="enrollComboGender" prefHeight="31.0" prefWidth="133.0" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+                              <Label prefHeight="31.0" prefWidth="79.0" text="GENDER:" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="enrollClose" mnemonicParsing="false" onAction="#close" prefHeight="44.0" prefWidth="96.0" text="CLOSE" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+            <VBox fx:id="trackVBOX" layoutX="24.0" layoutY="21.0" prefHeight="431.0" prefWidth="692.0" visible="false">
+               <children>
+                  <TabPane>
+                     <tabs>
+                        <Tab text="Unscheduled Visit">
+                           <content>
+                              <VBox>
+                                 <children>
+                                    <HBox prefHeight="58.0" prefWidth="692.0">
+                                       <children>
+                                          <ComboBox fx:id="trackUnscheduledCombo" prefHeight="40.0" prefWidth="124.0" promptText="Search by" />
+                                          <TextField fx:id="searchTextTrackUnschedule" prefHeight="40.0" prefWidth="572.0" promptText="eg. FTA (00000), REQ (000000), PARASITOLOGY(0000)" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="371.0" prefWidth="692.0">
+                                       <children>
+                                          <TableView fx:id="trackUnscheduleVisitTable" prefHeight="399.0" prefWidth="672.0" HBox.hgrow="ALWAYS">
+                                             <columns>
+                                                <TableColumn fx:id="ColTrackUnscheduleSubjectNo" prefWidth="75.0" text="SUBJECT NO." />
+                                                <TableColumn fx:id="ColTrackUnscheduleDate" prefWidth="75.0" text="DATE" />
+                                                <TableColumn fx:id="ColTackUnscheduleTime" prefWidth="75.0" text="TIME" />
+                                                <TableColumn fx:id="ColTrackUnscheduleFTA" prefWidth="75.0" text="FTA" />
+                                                <TableColumn fx:id="ColTrackUnscheduleRequisition" prefWidth="75.0" text="REQUISITION" />
+                                                <TableColumn fx:id="ColTrackUnscheduleParasitology" prefWidth="75.0" text="PARASITOLOGY" />
+                                             </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </TableView>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                        <Tab text="Scheduled Visit">
+                           <content>
+                              <VBox>
+                                 <children>
+                                    <HBox prefHeight="58.0" prefWidth="692.0">
+                                       <children>
+                                          <ComboBox fx:id="trackScheduledCombo" prefHeight="40.0" prefWidth="124.0" promptText="Search by" />
+                                          <TextField fx:id="trackScheduleSearchTextBox" prefHeight="40.0" prefWidth="572.0" promptText="eg.IMMUNOGEN(000000) GENOTYPING (000000), PARASITEMIA (00000)" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="371.0" prefWidth="692.0">
+                                       <children>
+                                          <TableView fx:id="trackScheduleVisitTable" prefHeight="399.0" prefWidth="672.0" HBox.hgrow="ALWAYS">
+                                             <columns>
+                                                <TableColumn fx:id="ColtrackScheduleSubjectNo" prefWidth="75.0" text="SUBJECT NO." />
+                                                <TableColumn fx:id="ColTrackScheduleVisit" prefWidth="75.0" text="VISIT" />
+                                                <TableColumn fx:id="colTrackScheduleDate" prefWidth="75.0" text="DATE" />
+                                                <TableColumn fx:id="colTrackScheduleTime" prefWidth="75.0" text="TIME" />
+                                                <TableColumn fx:id="colTrackScheduleParasitemia" prefWidth="75.0" text="PARASITEMIA" />
+                                                <TableColumn fx:id="colTrackScheduleGenotyping" prefWidth="75.0" text="GENOTYPING" />
+                                                <TableColumn fx:id="colTrackScheduleImmuno" prefWidth="75.0" text="IMMUNOGENECITY" />
+                                             </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </TableView>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="45.0" prefWidth="728.0" text="LABORATORY AE TRACKER" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <HBox>
+               <children>
+                  <AnchorPane prefHeight="25.0" prefWidth="170.0" />
+                  <TextField fx:id="searchSubject" prefHeight="30.0" prefWidth="373.0" promptText="Enter Subject to Serach" />
+                  <AnchorPane prefHeight="25.0" prefWidth="43.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+</BorderPane>
