@@ -17,7 +17,6 @@ import model.Subjects;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Duncan Adjei
@@ -25,7 +24,8 @@ import model.Subjects;
 public abstract class ConnectAbstract {
 
     protected abstract Connection connect();
-  public boolean create(Subjects model) {
+
+    public boolean create(Subjects model) {
         try {
             String sql = "INSERT INTO subjects (subjectid, dob, gender, subjectgroup) VALUES (?,?,?,?)";
             PreparedStatement s = connect().prepareStatement(sql, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
@@ -93,7 +93,8 @@ public abstract class ConnectAbstract {
         }
         return data;
     }
- public List<Subjects> getSubjectByID(int index) {
+
+    public List<Subjects> getSubjectByID(int index) {
         List<Subjects> data = new ArrayList();
         try {
             String sql = "SELECT * FROM subjects WHERE subjectid=?";
@@ -102,8 +103,8 @@ public abstract class ConnectAbstract {
             s.setInt(1, index);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
-                 Subjects model = new Subjects();
-                 model.setId(rs.getInt("id"));
+                Subjects model = new Subjects();
+                model.setId(rs.getInt("id"));
                 model.setSubjectid(rs.getInt("subjectid"));
                 model.setDob(rs.getDate("dob"));
                 model.setGender(rs.getString("gender"));
@@ -116,8 +117,8 @@ public abstract class ConnectAbstract {
         }
         return data;
     }
-      
-  public boolean create(Log model) {
+
+    public boolean create(Log model) {
         try {
             String sql = "INSERT INTO log (lognumber, subjectid,  requsitionnumber, collectiondate, parasite, trackingnumber, collectiontime, parasitology) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement s = connect().prepareStatement(sql, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
@@ -127,8 +128,8 @@ public abstract class ConnectAbstract {
             s.setInt(3, model.getRequsitionnumber());
             s.setDate(4, model.getCollectiondate());
             s.setString(5, model.getParasite());
-            s.setInt(6,model.getTrackingnumber());
-            s.setTime(7,model.getCollectiontime());
+            s.setInt(6, model.getTrackingnumber());
+            s.setTime(7, model.getCollectiontime());
             s.setInt(8, model.getParasitology());
             return s.executeUpdate() > 0;
         } catch (SQLException ex) {
@@ -143,11 +144,11 @@ public abstract class ConnectAbstract {
             PreparedStatement s = connect().prepareStatement(sql, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
             s.setFetchSize(1);
             s.setInt(1, model.getLognumber());
-            s.setInt(2,model.getSubjectid());
+            s.setInt(2, model.getSubjectid());
             s.setInt(3, model.getRequsitionnumber());
             s.setDate(4, model.getCollectiondate());
             s.setString(5, model.getParasite());
-            s.setInt(6,model.getTrackingnumber());
+            s.setInt(6, model.getTrackingnumber());
             s.setTime(7, model.getCollectiontime());
             s.setInt(8, model.getParasitology());
             s.setInt(9, model.getId());
@@ -186,7 +187,7 @@ public abstract class ConnectAbstract {
                 model.setSubjectid(rs.getInt("subjectid"));
                 model.setRequsitionnumber(rs.getInt("requsitionnumber"));
                 model.setCollectiondate(rs.getDate("collectiondate"));
-                model.setCollectiontime (rs.getTime("collectiontime"));
+                model.setCollectiontime(rs.getTime("collectiontime"));
                 model.setParasite(rs.getString("parasite"));
                 model.setTrackingnumber(rs.getInt("trackingnumber"));
                 model.setParasitology(rs.getInt("parasitology"));
@@ -197,16 +198,14 @@ public abstract class ConnectAbstract {
             return null;
         }
         return data;
-    }  
-    
-    public List<Log> findAllLogOfSubject(int subjectid, int logid) {
+    }
+
+    public List<Log> findAllLogs() {
         List<Log> data = new ArrayList();
         try {
-            String sql = "SELECT * FROM log WHERE subjectid =? AND id = ?";
+            String sql = "SELECT * FROM log";
             PreparedStatement s = connect().prepareStatement(sql, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
             s.setFetchSize(1);
-            s.setInt(1, subjectid);
-            s.setInt(2,logid);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
                 Log model = new Log();
@@ -215,7 +214,7 @@ public abstract class ConnectAbstract {
                 model.setSubjectid(rs.getInt("subjectid"));
                 model.setRequsitionnumber(rs.getInt("requsitionnumber"));
                 model.setCollectiondate(rs.getDate("collectiondate"));
-                model.setCollectiontime (rs.getTime("collectiontime"));
+                model.setCollectiontime(rs.getTime("collectiontime"));
                 model.setParasite(rs.getString("parasite"));
                 model.setTrackingnumber(rs.getInt("trackingnumber"));
                 model.setParasitology(rs.getInt("parasitology"));
@@ -226,7 +225,36 @@ public abstract class ConnectAbstract {
             return null;
         }
         return data;
-    }  
+    }
+
+    public List<Log> findAllLogOfSubject(int subjectid, int logid) {
+        List<Log> data = new ArrayList();
+        try {
+            String sql = "SELECT * FROM log WHERE subjectid =? AND id = ?";
+            PreparedStatement s = connect().prepareStatement(sql, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+            s.setFetchSize(1);
+            s.setInt(1, subjectid);
+            s.setInt(2, logid);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                Log model = new Log();
+                model.setId(rs.getInt("id"));
+                model.setLognumber(rs.getInt("lognumber"));
+                model.setSubjectid(rs.getInt("subjectid"));
+                model.setRequsitionnumber(rs.getInt("requsitionnumber"));
+                model.setCollectiondate(rs.getDate("collectiondate"));
+                model.setCollectiontime(rs.getTime("collectiontime"));
+                model.setParasite(rs.getString("parasite"));
+                model.setTrackingnumber(rs.getInt("trackingnumber"));
+                model.setParasitology(rs.getInt("parasitology"));
+                data.add(model);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return data;
+    }
 
     public int logsCountForSubject(int subjectid) {
         int count = 0;
@@ -246,12 +274,13 @@ public abstract class ConnectAbstract {
             return 0;
         }
         return count;
-    }    
-     public boolean updateJoin(Log model,int previousSubjectid) {
+    }
+
+    public boolean updateJoin(Log model, int previousSubjectid) {
         try {
-            String sql = "UPDATE log AS l\n" +
-                                "INNER JOIN subjects AS s ON l.subjectid = s.subjectid\n" +
-                                "SET l.subjectid = ? WHERE l.subjectid=?";
+            String sql = "UPDATE log AS l\n"
+                    + "INNER JOIN subjects AS s ON l.subjectid = s.subjectid\n"
+                    + "SET l.subjectid = ? WHERE l.subjectid=?";
             PreparedStatement s = connect().prepareStatement(sql, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
             s.setFetchSize(1);
             s.setInt(1, model.getSubjectid());
@@ -264,7 +293,7 @@ public abstract class ConnectAbstract {
     }
 
 //   SCHEDULES
-     public boolean create(Schedule model) {
+    public boolean create(Schedule model) {
         try {
             String sql = "INSERT INTO scheduled (snumber, visit,  coldate, timecol, parasitemia, genotype, immunogenecity, hemo, alt, creatine, wbc, plates, datecreated) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,NOW())";
             PreparedStatement s = connect().prepareStatement(sql, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
@@ -274,8 +303,8 @@ public abstract class ConnectAbstract {
             s.setDate(3, model.getColdate());
             s.setTime(4, model.getColtime());
             s.setInt(5, model.getParasitemia());
-            s.setInt(6,model.getGenotyping());
-            s.setInt(7,model.getImmunogenecity());
+            s.setInt(6, model.getGenotyping());
+            s.setInt(7, model.getImmunogenecity());
             s.setDouble(8, model.getHaemoglobin());
             s.setInt(9, model.getAlt());
             s.setInt(10, model.getCreatinine());
@@ -298,8 +327,8 @@ public abstract class ConnectAbstract {
             s.setDate(3, model.getColdate());
             s.setTime(4, model.getColtime());
             s.setInt(5, model.getParasitemia());
-            s.setInt(6,model.getGenotyping());
-            s.setInt(7,model.getImmunogenecity());
+            s.setInt(6, model.getGenotyping());
+            s.setInt(7, model.getImmunogenecity());
             s.setDouble(8, model.getHaemoglobin());
             s.setInt(9, model.getAlt());
             s.setInt(10, model.getCreatinine());
@@ -356,8 +385,37 @@ public abstract class ConnectAbstract {
             return null;
         }
         return data;
-    }  
-    
-  
+    }
+
+    public List<Schedule> findAllSchedule() {
+        List<Schedule> data = new ArrayList();
+        try {
+            String sql = "SELECT * FROM scheduled";
+            PreparedStatement s = connect().prepareStatement(sql, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+            s.setFetchSize(1);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                Schedule model = new Schedule();
+                model.setId(rs.getInt("id"));
+                model.setSnumber(rs.getInt("snumber"));
+                model.setVisit(rs.getString("visit"));
+                model.setColdate(rs.getDate("coldate"));
+                model.setColtime(rs.getTime("timecol"));
+                model.setParasitemia(rs.getInt("parasitemia"));
+                model.setGenotyping(rs.getInt("genotype"));
+                model.setImmunogenecity(rs.getInt("immunogenecity"));
+                model.setHaemoglobin(rs.getDouble("hemo"));
+                model.setAlt(rs.getInt("alt"));
+                model.setCreatinine(rs.getInt("creatine"));
+                model.setWbc(rs.getDouble("wbc"));
+                model.setPlatelets(rs.getInt("plates"));
+                data.add(model);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return data;
+    }
 
 }
