@@ -41,7 +41,7 @@
                         <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                            <children>
                               <Button fx:id="subjectView" mnemonicParsing="false" onAction="#viewSubject" prefHeight="45.0" prefWidth="62.0" text="VIEW" />
-                              <Button fx:id="subjectView1" mnemonicParsing="false" onAction="#viewSubject" prefHeight="45.0" prefWidth="62.0" text="TRACK" />
+                              <Button fx:id="trackView" mnemonicParsing="false" onAction="#viewTrack" prefHeight="45.0" prefWidth="62.0" text="TRACK" />
                            </children>
                         </VBox>
                      </children>
@@ -278,7 +278,7 @@
                                                 <Font name="System Bold" size="24.0" />
                                              </font>
                                           </Label>
-                                          <Button mnemonicParsing="false" onAction="#scheduleVisitSave" prefHeight="44.0" prefWidth="96.0" text="SAVE" GridPane.columnIndex="6" GridPane.rowIndex="9" />
+                                          <Button fx:id="saveButScheduling" mnemonicParsing="false" onAction="#scheduleVisitSave" prefHeight="44.0" prefWidth="96.0" text="SAVE" GridPane.columnIndex="6" GridPane.rowIndex="9" />
                                           <Button fx:id="loggingClose1" mnemonicParsing="false" onAction="#closeAddLog" prefHeight="44.0" prefWidth="96.0" text="CLOSE" GridPane.columnIndex="7" GridPane.rowIndex="9" />
                                           <Label prefHeight="31.0" prefWidth="273.0" text="GENOTYPING:" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="3">
                                              <font>
@@ -482,6 +482,11 @@
                         </Tab>
                      </tabs>
                   </TabPane>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="123.0" prefWidth="692.0">
+                     <children>
+                        <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#close" prefHeight="54.0" prefWidth="119.0" text="Close" />
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>
